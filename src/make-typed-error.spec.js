@@ -1,0 +1,38 @@
+require('should');
+
+var makeTypedError = require('./make-typed-error');
+
+describe.only('Errors', function () {
+
+    var FooException = makeTypedError('FooException');
+
+    it('should be an instanceof', function () {
+        var CopyOfFooException = makeTypedError('FooException');
+        try {
+            throw new FooException('Foobar!');
+        } catch (e) {
+            e.should.be.an.instanceof(FooException);
+            e.should.be.an.instanceof(Error);
+            e.should.not.be.an.instanceof(CopyOfFooException);
+        }
+    });
+
+    it('should have a message', function () {
+        try {
+            throw new FooException('Foobar!');
+        } catch (e) {
+            e.message.should.equal('Foobar!');
+        }
+    });
+
+    it('should produce a good stack trace', function () {
+        try {
+            throw new FooException('Foobar!');
+        } catch (e) {
+            // starts with correct name and where it was thrown from
+            e.stack.should.match(/^FooException\n {4}at new TypedError \(\S+make-typed-error.js:\d+:\d+\)/);
+            // eventually points to where it was thrown in this very file
+            e.stack.should.match(/\(\S+make-typed-error.spec.js:\d+:\d+\)/);
+        }
+    });
+});
