@@ -15,12 +15,11 @@ describe('makeTypedError', function () {
         }
     });
 
-    it('should not be an instanceof everything', function () {
+    it('should create distinct types', function () {
         var CopyOfFooException = makeTypedError('FooException');
         try {
             throw new FooException('Foobar!');
         } catch (e) {
-            e.should.be.an.instanceof(Error);
             e.should.not.be.an.instanceof(CopyOfFooException);
         }
     });
