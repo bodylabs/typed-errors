@@ -1,3 +1,3 @@
 module.exports = {
-    makeTypedError: require('src/make-typed-error'),
+    makeTypedError: require('./src/make-typed-error'),
 };
