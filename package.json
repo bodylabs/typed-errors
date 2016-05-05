@@ -1,6 +1,6 @@
 {
   "name": "typed-errors",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Create custom error types that work with `instanceof` and have stack traces",
   "license": "BSD-2-Clause",
   "main": "index.js",
@@ -16,6 +16,7 @@
     "url": "git@github.com:bodylabs/typed-errors.git"
   },
   "dependencies": {
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "bodylabs-javascript-style": "~4.0.0",
