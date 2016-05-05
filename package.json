@@ -16,6 +16,7 @@
     "url": "git@github.com:bodylabs/typed-errors.git"
   },
   "dependencies": {
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "bodylabs-javascript-style": "~4.0.0",
