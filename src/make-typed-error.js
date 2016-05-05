@@ -1,14 +1,16 @@
-var makeTypedError = function (name) {
+var makeTypedError = function (name, Supertype) {
+
+    Supertype = Supertype || Error;
 
     var TypedError = function (message) {
         this.name = name;
         this.message = message;
-        var tempStack = (new Error()).stack;
+        var tempStack = (new Supertype()).stack;
         // replace 'Error' with actual name in stack trace
-        this.stack = this.name + tempStack.slice(5);
+        this.stack = tempStack.replace(/^[^:]+:/, name + ':');
     };
 
-    TypedError.prototype = Object.create(Error.prototype);
+    TypedError.prototype = Object.create(Supertype.prototype);
     TypedError.prototype.constructor = TypedError;
 
     return TypedError;
